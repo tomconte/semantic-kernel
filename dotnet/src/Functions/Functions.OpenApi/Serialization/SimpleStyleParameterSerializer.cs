@@ -2,6 +2,7 @@
 
 using System;
 using System.Text.Json.Nodes;
+using System.Web;
 
 namespace Microsoft.SemanticKernel.Plugins.OpenApi;
 
@@ -35,7 +36,7 @@ internal static class SimpleStyleParameterSerializer
         }
 
         // Handling parameters of primitive and removing extra quotes added by the JsonValue for string values.
-        return argument.ToString().Trim('"');
+        return HttpUtility.UrlEncode(argument.ToString().Trim('"'));
     }
 
     /// <summary>
